@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lovethoballe.com/sitemap.xml
+
+# Disallow common bot traps and admin areas
+Disallow: /admin/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.vscode/
+Disallow: /.claude/
+
+# Allow important pages
+Allow: /
+Allow: /projects.html
+Allow: /projects/
+Allow: /blog.html
+Allow: /blog/
+Allow: /privacy-policy.html
+Allow: /terms-of-service.html
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

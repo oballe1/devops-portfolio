@@ -1,0 +1,14 @@
+# Ignore all .log files
+*.log
+
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore the .git directory and its contents
+.git/
+
+# Ignore any .env files
+.env
+*.md
+# But don't ignore important.txt, even if it ends with .txt
+!important.txt

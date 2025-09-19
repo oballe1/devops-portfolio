@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kubernetes Best Practices for Production | DevOps Blog</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .comment-card {
+            transition: all 0.3s ease;
+        }
+        .comment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .reply-form {
+            display: none;
+        }
+        .reply-form.show {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-blue-600">DevOpsEngineer</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Home</a>
+                    <a href="../projects.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Projects</a>
+                    <a href="../index.html#skills" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Skills</a>
+                    <a href="../index.html#resume" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Resume</a>
+                    <a href="../blog.html" class="text-blue-600 px-3 py-2 font-medium">Blog</a>
+                    <a href="../index.html#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="pt-32 pb-12 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-6">
+                <a href="../blog.html" class="inline-flex items-center text-blue-200 hover:text-white mr-4">
+                    <i data-feather="arrow-left" class="mr-2"></i>
+                    Back to Blog
+                </a>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-blue-200 text-sm">April 15, 2023</span>
+                <span class="mx-2 text-blue-200">•</span>
+                <span class="text-blue-200 text-sm">8 min read</span>
+                <span class="mx-2 text-blue-200">•</span>
+                <span class="text-blue-200 text-sm">Production</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Kubernetes Best Practices for Production</h1>
+            <p class="text-xl text-blue-100">Essential guidelines and strategies for running Kubernetes clusters safely and efficiently in production environments.</p>
+            <div class="flex items-center mt-6">
+                <img src="http://static.photos/people/60x60/1" alt="Loveth Oballe Ayuknteck" class="w-12 h-12 rounded-full mr-4">
+                <div>
+                    <h3 class="font-semibold">Loveth Oballe Ayuknteck</h3>
+                    <p class="text-blue-200 text-sm">Senior DevOps Engineer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg max-w-none">
+                <div class="bg-white rounded-lg shadow-sm p-8" data-aos="fade-up">
+                    <img src="http://static.photos/technology/800x400/25" alt="Kubernetes Dashboard" class="w-full rounded-lg mb-8">
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Introduction</h2>
+                    <p class="text-gray-600 mb-6">
+                        Running Kubernetes in production requires careful planning, proper configuration, and adherence to best practices.
+                        After managing production Kubernetes clusters for several years, I've compiled a comprehensive guide to help you
+                        avoid common pitfalls and ensure your clusters are secure, scalable, and maintainable.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">1. Resource Management</h2>
+                    <p class="text-gray-600 mb-4">
+                        Proper resource management is crucial for cluster stability and cost optimization. Always define resource
+                        requests and limits for your containers.
+                    </p>
+
+                    <div class="bg-gray-900 text-green-400 p-6 rounded-lg mb-6 font-mono text-sm overflow-x-auto">
+                        <pre><code>apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+spec:
+  containers:
+  - name: app
+    image: nginx:1.21
+    resources:
+      requests:
+        memory: "256Mi"
+        cpu: "250m"
+      limits:
+        memory: "512Mi"
+        cpu: "500m"</code></pre>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">2. Security Best Practices</h2>
+                    <p class="text-gray-600 mb-4">Security should be implemented at multiple layers:</p>
+                    <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                        <li>Use RBAC (Role-Based Access Control) to limit permissions</li>
+                        <li>Implement Pod Security Standards</li>
+                        <li>Enable network policies for traffic segmentation</li>
+                        <li>Regularly update and patch your cluster</li>
+                        <li>Use admission controllers for policy enforcement</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">3. Monitoring and Observability</h2>
+                    <p class="text-gray-600 mb-4">
+                        Comprehensive monitoring is essential for maintaining healthy production clusters. Implement monitoring
+                        at the infrastructure, platform, and application levels.
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6">
+                        <div class="flex">
+                            <i data-feather="info" class="text-blue-500 mr-3 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-blue-800 mb-2">Pro Tip</h3>
+                                <p class="text-blue-700">
+                                    Use Prometheus for metrics collection, Grafana for visualization, and implement custom alerts
+                                    for business-critical applications. Don't forget to monitor your monitoring stack itself!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">4. High Availability and Disaster Recovery</h2>
+                    <p class="text-gray-600 mb-4">
+                        Design your applications and infrastructure for resilience:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                        <li>Distribute workloads across multiple availability zones</li>
+                        <li>Implement proper health checks and readiness probes</li>
+                        <li>Use horizontal pod autoscaling for dynamic scaling</li>
+                        <li>Maintain regular backups of etcd and persistent volumes</li>
+                        <li>Test your disaster recovery procedures regularly</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Conclusion</h2>
+                    <p class="text-gray-600 mb-6">
+                        Successfully running Kubernetes in production requires attention to detail, continuous learning, and
+                        adherence to best practices. Start with these fundamentals and gradually expand your expertise as your
+                        clusters grow in complexity.
+                    </p>
+
+                    <div class="bg-gray-100 rounded-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3">Key Takeaways</h3>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Always define resource requests and limits</li>
+                            <li>Implement security at multiple layers</li>
+                            <li>Monitor everything that matters</li>
+                            <li>Design for failure and test regularly</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Social Share -->
+    <section class="py-8 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <span class="text-gray-600 font-medium">Share this article:</span>
+                    <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800" onclick="shareArticle('twitter')">
+                        <i data-feather="twitter"></i>
+                        <span>Twitter</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-blue-600 hover:text-blue-800" onclick="shareArticle('linkedin')">
+                        <i data-feather="linkedin"></i>
+                        <span>LinkedIn</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-600 hover:text-gray-800" onclick="copyLink()">
+                        <i data-feather="link"></i>
+                        <span>Copy Link</span>
+                    </button>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="flex items-center space-x-2 text-red-500 hover:text-red-700" onclick="likeArticle()">
+                        <i data-feather="heart" id="like-icon"></i>
+                        <span id="like-count">42</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Comments (<span id="comment-count">3</span>)</h2>
+
+            <!-- Comment Form -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8" data-aos="fade-up">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Leave a Comment</h3>
+                <form id="comment-form" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                            <p class="text-xs text-gray-500 mt-1">Your email will not be published</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="comment" class="block text-sm font-medium text-gray-700 mb-1">Comment *</label>
+                        <textarea id="comment" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Share your thoughts..."></textarea>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="notify" class="mr-2">
+                        <label for="notify" class="text-sm text-gray-600">Notify me of new comments via email</label>
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Existing Comments -->
+            <div id="comments-list" class="space-y-6">
+                <!-- Comment 1 -->
+                <div class="comment-card bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                    <div class="flex items-start space-x-4">
+                        <img src="http://static.photos/people/50x50/2" alt="Sarah Chen" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Sarah Chen</h4>
+                                    <p class="text-sm text-gray-500">2 days ago</p>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-gray-400 hover:text-blue-600" onclick="likeComment(1)">
+                                        <i data-feather="heart" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="text-sm text-gray-500">5</span>
+                                    <button class="text-gray-400 hover:text-blue-600 ml-2" onclick="toggleReply(1)">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 mb-3">
+                                Excellent article! We implemented these practices at my company and saw a 40% reduction in production incidents.
+                                The resource management section is particularly valuable - we had several outages before properly configuring limits.
+                            </p>
+
+                            <!-- Reply Form -->
+                            <div id="reply-form-1" class="reply-form mt-4 p-4 bg-gray-50 rounded-lg">
+                                <form class="space-y-3">
+                                    <div class="grid md:grid-cols-2 gap-3">
+                                        <input type="text" placeholder="Your name" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="email" placeholder="Your email" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <textarea rows="3" placeholder="Write a reply..." class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                    <div class="flex space-x-2">
+                                        <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded text-sm hover:bg-blue-700">Reply</button>
+                                        <button type="button" onclick="toggleReply(1)" class="text-gray-600 px-4 py-1 rounded text-sm hover:bg-gray-200">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <!-- Reply -->
+                            <div class="mt-4 ml-8 p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-start space-x-3">
+                                    <img src="http://static.photos/people/40x40/1" alt="Loveth Oballe Ayuknteck" class="w-8 h-8 rounded-full">
+                                    <div>
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <h5 class="font-semibold text-sm text-gray-800">Loveth Oballe Ayuknteck</h5>
+                                            <span class="text-xs text-blue-600 bg-blue-100 px-2 py-1 rounded">Author</span>
+                                            <span class="text-xs text-gray-500">1 day ago</span>
+                                        </div>
+                                        <p class="text-sm text-gray-700">
+                                            Thanks Sarah! That's exactly the kind of impact we're looking for. Resource limits are often overlooked but critical for stability.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment 2 -->
+                <div class="comment-card bg-white rounded-lg shadow-sm p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-start space-x-4">
+                        <img src="http://static.photos/people/50x50/3" alt="Mike Rodriguez" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Mike Rodriguez</h4>
+                                    <p class="text-sm text-gray-500">1 week ago</p>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-gray-400 hover:text-blue-600" onclick="likeComment(2)">
+                                        <i data-feather="heart" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="text-sm text-gray-500">8</span>
+                                    <button class="text-gray-400 hover:text-blue-600 ml-2" onclick="toggleReply(2)">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-gray-700">
+                                Would love to see a follow-up article on advanced networking in Kubernetes. Service mesh integration would be particularly interesting!
+                            </p>
+
+                            <!-- Reply Form -->
+                            <div id="reply-form-2" class="reply-form mt-4 p-4 bg-gray-50 rounded-lg">
+                                <form class="space-y-3">
+                                    <div class="grid md:grid-cols-2 gap-3">
+                                        <input type="text" placeholder="Your name" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="email" placeholder="Your email" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <textarea rows="3" placeholder="Write a reply..." class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                    <div class="flex space-x-2">
+                                        <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded text-sm hover:bg-blue-700">Reply</button>
+                                        <button type="button" onclick="toggleReply(2)" class="text-gray-600 px-4 py-1 rounded text-sm hover:bg-gray-200">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comment 3 -->
+                <div class="comment-card bg-white rounded-lg shadow-sm p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-start space-x-4">
+                        <img src="http://static.photos/people/50x50/4" alt="Lisa Wang" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Lisa Wang</h4>
+                                    <p class="text-sm text-gray-500">2 weeks ago</p>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button class="text-gray-400 hover:text-blue-600" onclick="likeComment(3)">
+                                        <i data-feather="heart" class="w-4 h-4"></i>
+                                    </button>
+                                    <span class="text-sm text-gray-500">12</span>
+                                    <button class="text-gray-400 hover:text-blue-600 ml-2" onclick="toggleReply(3)">
+                                        <i data-feather="message-circle" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-gray-700">
+                                Great practical advice! I especially appreciate the code examples. One question - what's your recommendation for handling secrets in a multi-tenant environment?
+                            </p>
+
+                            <!-- Reply Form -->
+                            <div id="reply-form-3" class="reply-form mt-4 p-4 bg-gray-50 rounded-lg">
+                                <form class="space-y-3">
+                                    <div class="grid md:grid-cols-2 gap-3">
+                                        <input type="text" placeholder="Your name" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="email" placeholder="Your email" class="px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500">
+                                    </div>
+                                    <textarea rows="3" placeholder="Write a reply..." class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+                                    <div class="flex space-x-2">
+                                        <button type="submit" class="bg-blue-600 text-white px-4 py-1 rounded text-sm hover:bg-blue-700">Reply</button>
+                                        <button type="button" onclick="toggleReply(3)" class="text-gray-600 px-4 py-1 rounded text-sm hover:bg-gray-200">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Comments -->
+            <div class="text-center mt-8">
+                <button class="text-blue-600 hover:text-blue-800 font-medium" onclick="loadMoreComments()">
+                    Load More Comments
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Related Articles</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 rounded-lg overflow-hidden hover:shadow-md transition duration-300">
+                    <img src="http://static.photos/technology/400x200/26" alt="Related Article" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600">March 28, 2023</span>
+                        <h3 class="text-xl font-semibold text-gray-800 my-2">Terraform Modules: Reusable Infrastructure</h3>
+                        <p class="text-gray-600">How to create reusable Terraform modules to standardize your infrastructure across projects.</p>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg overflow-hidden hover:shadow-md transition duration-300">
+                    <img src="http://static.photos/technology/400x200/27" alt="Related Article" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600">February 10, 2023</span>
+                        <h3 class="text-xl font-semibold text-gray-800 my-2">CI/CD Pipeline Security Considerations</h3>
+                        <p class="text-gray-600">Essential security practices to implement in your CI/CD pipelines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start">
+                    <span class="text-xl font-bold text-blue-400">DevOpsEngineer</span>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <div class="flex justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize feather icons
+        feather.replace();
+
+        // Comment functionality
+        let isLiked = false;
+        let likeCount = 42;
+
+        function likeArticle() {
+            const likeIcon = document.getElementById('like-icon');
+            const countElement = document.getElementById('like-count');
+
+            if (isLiked) {
+                likeCount--;
+                likeIcon.style.fill = 'none';
+                isLiked = false;
+            } else {
+                likeCount++;
+                likeIcon.style.fill = 'currentColor';
+                isLiked = true;
+            }
+
+            countElement.textContent = likeCount;
+        }
+
+        function likeComment(commentId) {
+            // Toggle like state for individual comments
+            console.log('Liked comment:', commentId);
+        }
+
+        function toggleReply(commentId) {
+            const replyForm = document.getElementById(`reply-form-${commentId}`);
+            replyForm.classList.toggle('show');
+        }
+
+        function shareArticle(platform) {
+            const url = window.location.href;
+            const title = "Kubernetes Best Practices for Production";
+
+            switch(platform) {
+                case 'twitter':
+                    window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+                    break;
+                case 'linkedin':
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+                    break;
+            }
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        function loadMoreComments() {
+            // Simulate loading more comments
+            alert('Loading more comments... (This would load additional comments in a real implementation)');
+        }
+
+        // Handle comment form submission
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const comment = document.getElementById('comment').value;
+
+            if (name && email && comment) {
+                // In a real implementation, this would send the comment to a server
+                alert('Thank you for your comment! It will be reviewed and published shortly.');
+
+                // Reset form
+                this.reset();
+
+                // Update comment count
+                const commentCount = document.getElementById('comment-count');
+                commentCount.textContent = parseInt(commentCount.textContent) + 1;
+            }
+        });
+
+        // Handle reply form submissions
+        document.addEventListener('submit', function(e) {
+            if (e.target.closest('.reply-form')) {
+                e.preventDefault();
+                alert('Reply submitted! It will be reviewed and published shortly.');
+                e.target.reset();
+                e.target.closest('.reply-form').classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

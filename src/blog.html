@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | DevOps Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .article-card {
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .article-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .article-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+        .article-card::before {
+            content: "📖 Click to read";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        .article-card:hover::before {
+            opacity: 1;
+        }
+        .article-card {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="text-xl font-bold text-blue-600">DevOpsEngineer</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Home</a>
+                    <a href="projects.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Projects</a>
+                    <a href="index.html#skills" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Skills</a>
+                    <a href="index.html#resume" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Resume</a>
+                    <a href="blog.html" class="text-blue-600 px-3 py-2 font-medium">Blog</a>
+                    <a href="index.html#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">DevOps Blog</h1>
+            <p class="text-xl max-w-3xl mx-auto">Articles, tutorials, and insights about DevOps, cloud computing, and automation</p>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="md:col-span-2">
+                    <!-- Featured Article -->
+                    <a href="blog/kubernetes-best-practices.html" class="article-link block">
+                    <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 mb-12 cursor-pointer hover:shadow-lg" data-aos="fade-up">
+                        <img src="http://static.photos/technology/1200x630/25" alt="Kubernetes Article" class="w-full h-64 object-cover">
+                        <div class="p-8">
+                            <div class="flex items-center mb-4">
+                                <span class="text-sm text-blue-600">April 15, 2023</span>
+                                <span class="mx-2 text-gray-400">•</span>
+                                <span class="text-sm text-gray-500">8 min read</span>
+                                <span class="mx-2 text-gray-400">•</span>
+                                <span class="text-sm bg-blue-100 text-blue-800 px-2 py-1 rounded">Featured</span>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4">Kubernetes Best Practices for Production</h2>
+                            <p class="text-gray-600 mb-6">Running Kubernetes in production requires careful planning and configuration. In this article, I'll share the lessons learned from managing Kubernetes clusters for enterprise applications...</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-blue-600 font-medium inline-flex items-center">
+                                    Read Article
+                                    <i data-feather="arrow-right" class="ml-2"></i>
+                                </span>
+                                <div class="flex items-center">
+                                    <img src="http://static.photos/people/40x40/1" alt="Author" class="w-8 h-8 rounded-full mr-2">
+                                    <span class="text-sm text-gray-600">Loveth Oballe Ayuknteck</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+
+                    <!-- Articles Grid -->
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Article 1 -->
+                        <a href="blog/terraform-modules.html" class="article-link block">
+                        <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer hover:shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                            <img src="http://static.photos/technology/640x360/26" alt="Terraform Article" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-sm text-blue-600">March 28, 2023</span>
+                                    <span class="mx-2 text-gray-400">•</span>
+                                    <span class="text-sm text-gray-500">6 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Terraform Modules: Reusable Infrastructure</h3>
+                                <p class="text-gray-600 mb-4">How to create reusable Terraform modules to standardize your infrastructure across projects and teams.</p>
+                                <span class="text-blue-600 font-medium inline-flex items-center">
+                                    Read More
+                                    <i data-feather="arrow-right" class="ml-2"></i>
+                                </span>
+                            </div>
+                        </div>
+                        </a>
+                        
+                        <!-- Article 2 -->
+                        <a href="blog/cicd-security.html" class="article-link block">
+                        <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer hover:shadow-lg" data-aos="fade-up" data-aos-delay="150">
+                            <img src="http://static.photos/technology/640x360/27" alt="CI/CD Article" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-sm text-blue-600">February 10, 2023</span>
+                                    <span class="mx-2 text-gray-400">•</span>
+                                    <span class="text-sm text-gray-500">7 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">CI/CD Pipeline Security Considerations</h3>
+                                <p class="text-gray-600 mb-4">Essential security practices to implement in your CI/CD pipelines to protect your software supply chain.</p>
+                                <span class="text-blue-600 font-medium inline-flex items-center">
+                                    Read More
+                                    <i data-feather="arrow-right" class="ml-2"></i>
+                                </span>
+                            </div>
+                        </div>
+                        </a>
+                        
+                        <!-- Article 3 -->
+                        <a href="blog/kubernetes-best-practices.html" class="article-link block">
+                        <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer hover:shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                            <img src="http://static.photos/technology/640x360/28" alt="Serverless Article" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-sm text-blue-600">January 22, 2023</span>
+                                    <span class="mx-2 text-gray-400">•</span>
+                                    <span class="text-sm text-gray-500">5 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Serverless Architecture Patterns</h3>
+                                <p class="text-gray-600 mb-4">Explore different architectural patterns for building serverless applications on AWS Lambda and Azure Functions.</p>
+                                <span class="text-blue-600 font-medium inline-flex items-center">
+                                    Read More
+                                    <i data-feather="arrow-right" class="ml-2"></i>
+                                </span>
+                            </div>
+                        </div>
+                        </a>
+                        
+                        <!-- Article 4 -->
+                        <a href="blog/kubernetes-best-practices.html" class="article-link block">
+                        <div class="article-card bg-white rounded-lg overflow-hidden shadow-md transition duration-300 cursor-pointer hover:shadow-lg" data-aos="fade-up" data-aos-delay="250">
+                            <img src="http://static.photos/technology/640x360/29" alt="Monitoring Article" class="w-full h-48 object-cover">
+                            <div class="p-6">
+                                <div class="flex items-center mb-2">
+                                    <span class="text-sm text-blue-600">December 5, 2022</span>
+                                    <span class="mx-2 text-gray-400">•</span>
+                                    <span class="text-sm text-gray-500">8 min read</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Effective Monitoring with Prometheus</h3>
+                                <p class="text-gray-600 mb-4">A practical guide to setting up Prometheus for monitoring your Kubernetes clusters and microservices.</p>
+                                <span class="text-blue-600 font-medium inline-flex items-center">
+                                    Read More
+                                    <i data-feather="arrow-right" class="ml-2"></i>
+                                </span>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="mt-12 flex justify-center">
+                        <nav class="flex items-center space-x-2">
+                            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                                <i data-feather="chevron-left"></i>
+                            </a>
+                            <a href="#" class="px-4 py-2 border border-blue-500 bg-blue-50 text-blue-600 rounded-md font-medium">1</a>
+                            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">2</a>
+                            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">3</a>
+                            <a href="#" class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                                <i data-feather="chevron-right"></i>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="md:col-span-1">
+                    <!-- About Author -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up">
+                        <div class="flex items-center mb-4">
+                            <img src="http://static.photos/people/80x80/1" alt="Author" class="w-16 h-16 rounded-full mr-4">
+                            <div>
+                                <h3 class="font-bold text-gray-800">Loveth Oballe Ayuknteck</h3>
+                                <p class="text-sm text-gray-600">DevOps Engineer & Cloud Specialist</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">With over 8 years of experience in DevOps, cloud computing, and automation, I share my knowledge and experiences through this blog.</p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <i data-feather="github"></i>
+                            </a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <i data-feather="linkedin"></i>
+                            </a>
+                            <a href="#" class="text-blue-600 hover:text-blue-800">
+                                <i data-feather="twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Categories -->
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="font-bold text-gray-800 mb-4">Categories</h3>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                    <i data-feather="git-merge" class="mr-2 w-4 h-4"></i>
+                                    CI/CD Pipelines
+                                    <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">12</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                    <i data-feather="cloud" class="mr-2 w-4 h-4"></i>
+                                    Cloud Computing
+                                    <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">8</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                    <i data-feather="box" class="mr-2 w-4 h-4"></i>
+                                    Containers
+                                    <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">15</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                    <i data-feather="shield" class="mr-2 w-4 h-4"></i>
+                                    DevSecOps
+                                    <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">7</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                    <i data-feather="activity" class="mr-2 w-4 h-4"></i>
+                                    Monitoring
+                                    <span class="ml-auto bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">9</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Popular Posts -->
+                    <div class="bg-white rounded-lg shadow-md p-6" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="font-bold text-gray-800 mb-4">Popular Posts</h3>
+                        <div class="space-y-4">
+                            <a href="#" class="flex items-start group">
+                                <img src="http://static.photos/technology/60x60/30" alt="Popular Post" class="w-12 h-12 rounded-md mr-3">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-800 group-hover:text-blue-600">10 Must-Have Kubernetes Tools</h4>
+                                    <span class="text-xs text-gray-500">March 5, 2023</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-start group">
+                                <img src="http://static.photos/technology/60x60/31" alt="Popular Post" class="w-12 h-12 rounded-md mr-3">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-800 group-hover:text-blue-600">AWS Cost Optimization Strategies</h4>
+                                    <span class="text-xs text-gray-500">February 18, 2023</span>
+                                </div>
+                            </a>
+                            <a href="#" class="flex items-start group">
+                                <img src="http://static.photos/technology/60x60/32" alt="Popular Post" class="w-12 h-12 rounded-md mr-3">
+                                <div>
+                                    <h4 class="text-sm font-medium text-gray-800 group-hover:text-blue-600">GitHub Actions vs Jenkins</h4>
+                                    <span class="text-xs text-gray-500">January 30, 2023</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start">
+                    <span class="text-xl font-bold text-blue-400">DevOpsEngineer</span>
+                </div>
+                <div class="mt-8 md:mt-0">
+                    <div class="flex justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="github"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-feather="twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
+                <div class="text-center md:text-left text-gray-400">
+                    <p>&copy; 2023 Loveth Oballe Ayuknteck. All rights reserved.</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <div class="flex justify-center md:justify-end space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Newsletter Signup -->
+    <section class="py-16 bg-blue-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold text-white mb-4">Stay Updated</h2>
+            <p class="text-xl text-blue-100 mb-8">Get the latest DevOps insights and tutorials delivered to your inbox</p>
+            <form class="max-w-md mx-auto flex gap-4" id="newsletter-form">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-md focus:ring-2 focus:ring-blue-300 focus:outline-none" required>
+                <button type="submit" class="bg-white text-blue-600 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition duration-300">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Initialize feather icons
+        feather.replace();
+
+        // Newsletter subscription
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            if (email) {
+                alert('Thank you for subscribing! You\'ll receive our latest updates at ' + email);
+                this.reset();
+            }
+        });
+
+        // Add interactive features to article cards
+        document.querySelectorAll('.article-card').forEach(card => {
+            card.addEventListener('mouseenter', function(e) {
+                // Add hover tracking
+                const title = this.querySelector('h2, h3').textContent;
+                console.log('Article hovered:', title);
+
+                // Add subtle hover effect
+                this.style.transform = 'translateY(-2px)';
+            });
+
+            card.addEventListener('mouseleave', function(e) {
+                // Reset hover effect
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add search functionality (basic implementation)
+        function searchArticles() {
+            const searchTerm = prompt('Search articles:');
+            if (searchTerm) {
+                const articles = document.querySelectorAll('.article-card h2, .article-card h3');
+                let found = false;
+
+                articles.forEach(article => {
+                    if (article.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        article.style.backgroundColor = '#fef3c7';
+                        found = true;
+                        setTimeout(() => {
+                            article.style.backgroundColor = '';
+                        }, 3000);
+                    }
+                });
+
+                if (!found) {
+                    alert('No articles found matching "' + searchTerm + '"');
+                }
+            }
+        }
+
+        // Add search button to navigation (dynamically)
+        document.addEventListener('DOMContentLoaded', function() {
+            const nav = document.querySelector('nav .hidden.md\\:flex');
+            const searchBtn = document.createElement('button');
+            searchBtn.innerHTML = '<i data-feather="search"></i>';
+            searchBtn.className = 'text-gray-700 hover:text-blue-600 px-3 py-2';
+            searchBtn.onclick = searchArticles;
+            nav.insertBefore(searchBtn, nav.lastElementChild);
+            feather.replace();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform Modules: Reusable Infrastructure | DevOps Blog</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .comment-card {
+            transition: all 0.3s ease;
+        }
+        .comment-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .reply-form {
+            display: none;
+        }
+        .reply-form.show {
+            display: block;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="text-xl font-bold text-blue-600">DevOpsEngineer</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Home</a>
+                    <a href="../projects.html" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Projects</a>
+                    <a href="../index.html#skills" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Skills</a>
+                    <a href="../index.html#resume" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Resume</a>
+                    <a href="../blog.html" class="text-blue-600 px-3 py-2 font-medium">Blog</a>
+                    <a href="../index.html#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <section class="pt-32 pb-12 bg-gradient-to-r from-green-600 to-green-800 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-6">
+                <a href="../blog.html" class="inline-flex items-center text-green-200 hover:text-white mr-4">
+                    <i data-feather="arrow-left" class="mr-2"></i>
+                    Back to Blog
+                </a>
+            </div>
+            <div class="flex items-center mb-4">
+                <span class="text-green-200 text-sm">March 28, 2023</span>
+                <span class="mx-2 text-green-200">•</span>
+                <span class="text-green-200 text-sm">6 min read</span>
+                <span class="mx-2 text-green-200">•</span>
+                <span class="text-green-200 text-sm">Infrastructure</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Terraform Modules: Reusable Infrastructure</h1>
+            <p class="text-xl text-green-100">Learn how to create reusable Terraform modules to standardize your infrastructure across projects and teams.</p>
+            <div class="flex items-center mt-6">
+                <img src="http://static.photos/people/60x60/1" alt="Loveth Oballe Ayuknteck" class="w-12 h-12 rounded-full mr-4">
+                <div>
+                    <h3 class="font-semibold">Loveth Oballe Ayuknteck</h3>
+                    <p class="text-green-200 text-sm">Senior DevOps Engineer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <article class="py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg max-w-none">
+                <div class="bg-white rounded-lg shadow-sm p-8" data-aos="fade-up">
+                    <img src="http://static.photos/technology/800x400/26" alt="Terraform Infrastructure" class="w-full rounded-lg mb-8">
+
+                    <p class="text-gray-600 mb-6">
+                        Terraform modules are the key to creating maintainable, reusable infrastructure code. They allow you to
+                        encapsulate common patterns and share them across teams and projects, reducing duplication and improving consistency.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">What are Terraform Modules?</h2>
+                    <p class="text-gray-600 mb-6">
+                        A Terraform module is a container for multiple resources that are used together. Every Terraform configuration
+                        has at least one module, called the root module, which consists of the resources defined in the .tf files
+                        in the main working directory.
+                    </p>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-500 p-6 mb-6">
+                        <div class="flex">
+                            <i data-feather="lightbulb" class="text-yellow-500 mr-3 mt-1"></i>
+                            <div>
+                                <h3 class="text-lg font-semibold text-yellow-800 mb-2">Best Practice</h3>
+                                <p class="text-yellow-700">
+                                    Start by identifying repeating patterns in your infrastructure code. These are perfect candidates for modules.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add more content here -->
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Comments Section (same structure as previous article) -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8">Comments (<span id="comment-count">2</span>)</h2>
+
+            <!-- Comment Form -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8" data-aos="fade-up">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Leave a Comment</h3>
+                <form id="comment-form" class="space-y-4">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
+                            <input type="text" id="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                            <input type="email" id="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="comment" class="block text-sm font-medium text-gray-700 mb-1">Comment *</label>
+                        <textarea id="comment" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Share your thoughts..."></textarea>
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition duration-300">
+                        Post Comment
+                    </button>
+                </form>
+            </div>
+
+            <!-- Existing Comments -->
+            <div class="space-y-6">
+                <div class="comment-card bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                    <div class="flex items-start space-x-4">
+                        <img src="http://static.photos/people/50x50/5" alt="Alex Kumar" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Alex Kumar</h4>
+                                    <p class="text-sm text-gray-500">3 days ago</p>
+                                </div>
+                                <button class="text-gray-400 hover:text-blue-600">
+                                    <i data-feather="heart" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-700">
+                                This is exactly what I needed! Our team was struggling with duplicate Terraform code across environments.
+                                Going to implement these module patterns right away.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comment-card bg-white rounded-lg shadow-sm p-6" data-aos="fade-up">
+                    <div class="flex items-start space-x-4">
+                        <img src="http://static.photos/people/50x50/6" alt="Emma Thompson" class="w-12 h-12 rounded-full">
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">Emma Thompson</h4>
+                                    <p class="text-sm text-gray-500">1 week ago</p>
+                                </div>
+                                <button class="text-gray-400 hover:text-blue-600">
+                                    <i data-feather="heart" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <p class="text-gray-700">
+                                Great article! Would love to see a follow-up on module versioning strategies and how to handle breaking changes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex justify-center md:justify-start">
+                    <span class="text-xl font-bold text-blue-400">DevOpsEngineer</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+
+        // Comment form functionality
+        document.getElementById('comment-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your comment! It will be reviewed and published shortly.');
+            this.reset();
+            const commentCount = document.getElementById('comment-count');
+            commentCount.textContent = parseInt(commentCount.textContent) + 1;
+        });
+    </script>
+</body>
+</html>
