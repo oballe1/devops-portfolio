@@ -53,21 +53,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
-    <style>
-        .hero-bg {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .skill-badge {
-            transition: all 0.3s ease;
-        }
-        .skill-badge:hover {
-            transform: scale(1.05);
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/styles.css">
 </head>
 <body class="font-sans bg-gray-50">
     <!-- Navigation -->
@@ -82,7 +68,6 @@
                     <a href="#projects" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Projects</a>
                     <a href="#skills" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Skills</a>
                     <a href="#resume" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Resume</a>
-                    <a href="#blog" class="text-gray-700 hover:text-blue-600 px-3 py-2 font-medium">Blog</a>
                     <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300">Contact</a>
                 </div>
                 <div class="md:hidden flex items-center">
@@ -95,7 +80,8 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white pt-32 pb-20" id="vanta-globe">
+    <section id="home" class="hero-bg text-white pt-32 pb-20 relative">
+        <div id="vanta-globe" class="absolute inset-0"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="md:flex items-center justify-between">
                 <div class="md:w-1/2" data-aos="fade-right">
@@ -108,7 +94,7 @@
                     </div>
                 </div>
                 <div class="hidden md:block md:w-1/2" data-aos="fade-left">
-                    <img src="http://static.photos/technology/640x360/1" alt="DevOps Engineer" class="rounded-lg shadow-xl">
+                    <img src="./assets/images/IMG_1830.jpg" alt="DevOps Engineer" class="profile-image">
                 </div>
             </div>
         </div>
@@ -365,144 +351,77 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Latest Articles</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Sharing knowledge about DevOps, cloud, and automation</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Post 1 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="100">
-                    <img src="http://static.photos/technology/640x360/10" alt="Kubernetes Article" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-sm text-blue-600">April 15, 2023</span>
-                        <h3 class="text-xl font-bold text-gray-800 my-2">Kubernetes Best Practices for Production</h3>
-                        <p class="text-gray-600 mb-4">Learn how to properly configure and secure your Kubernetes clusters for production workloads.</p>
-                        <a href="blog/kubernetes-best-practices.html" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                            Read More
-                            <i data-feather="arrow-right" class="ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Post 2 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="200">
-                    <img src="http://static.photos/technology/640x360/11" alt="Terraform Article" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-sm text-blue-600">March 28, 2023</span>
-                        <h3 class="text-xl font-bold text-gray-800 my-2">Terraform Modules: Reusable Infrastructure</h3>
-                        <p class="text-gray-600 mb-4">How to create reusable Terraform modules to standardize your infrastructure across projects.</p>
-                        <a href="blog/terraform-modules.html" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                            Read More
-                            <i data-feather="arrow-right" class="ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Post 3 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md" data-aos="fade-up" data-aos-delay="300">
-                    <img src="http://static.photos/technology/640x360/12" alt="CI/CD Article" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <span class="text-sm text-blue-600">February 10, 2023</span>
-                        <h3 class="text-xl font-bold text-gray-800 my-2">CI/CD Pipeline Security Considerations</h3>
-                        <p class="text-gray-600 mb-4">Essential security practices to implement in your CI/CD pipelines to protect your software supply chain.</p>
-                        <a href="blog/cicd-security.html" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
-                            Read More
-                            <i data-feather="arrow-right" class="ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="blog.html" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
-                    View All Articles
-                    <i data-feather="arrow-right" class="ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Have a project or question? I'd love to hear from you</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Let's connect! Reach out to me through any of the channels below</p>
             </div>
-            
-            <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl shadow-md overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-blue-600 text-white p-10">
-                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <i data-feather="mail" class="mr-4 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">Email</h4>
-                                    <p>loveth.oballe@devopsengineer.com</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i data-feather="phone" class="mr-4 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">Phone</h4>
-                                    <p>+1 (555) 123-4567</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i data-feather="map-pin" class="mr-4 mt-1"></i>
-                                <div>
-                                    <h4 class="font-semibold">Location</h4>
-                                    <p>San Francisco, CA</p>
-                                </div>
-                            </div>
+
+            <div class="max-w-4xl mx-auto">
+                <!-- Contact Information -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Email -->
+                    <div class="bg-gray-50 rounded-xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i data-feather="mail" class="text-white w-8 h-8"></i>
                         </div>
-                        <div class="mt-8">
-                            <h3 class="text-xl font-bold mb-4">Connect With Me</h3>
-                            <div class="flex space-x-4">
-                                <a href="https://github.com/lovethoballe" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-800 transition duration-300" target="_blank">
-                                    <i data-feather="github"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/loveth-oballe-ayuknteck" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-800 transition duration-300" target="_blank">
-                                    <i data-feather="linkedin"></i>
-                                </a>
-                                <a href="https://twitter.com/lovethoballe" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-800 transition duration-300" target="_blank">
-                                    <i data-feather="twitter"></i>
-                                </a>
-                            </div>
-                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Email</h3>
+                        <p class="text-gray-600 mb-4">Feel free to drop me an email</p>
+                        <a href="mailto:loveth.oballe@devopsengineer.com" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
+                            loveth.oballe@devopsengineer.com
+                        </a>
                     </div>
-                    <div class="md:w-1/2 p-10">
-                        <form id="contact-form" class="space-y-6">
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name *</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Your full name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="your.email@example.com">
-                            </div>
-                            <div>
-                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Brief subject of your message">
-                            </div>
-                            <div>
-                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message *</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="Your message here..."></textarea>
-                            </div>
-                            <button type="submit" id="submit-btn" class="w-full bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed">
-                                <span id="submit-text">Send Message</span>
-                                <span id="submit-loading" class="hidden">
-                                    <i data-feather="loader" class="inline animate-spin mr-2"></i>
-                                    Sending...
-                                </span>
-                            </button>
-                            <div id="form-message" class="hidden p-4 rounded-md"></div>
-                        </form>
+
+                    <!-- Phone -->
+                    <div class="bg-gray-50 rounded-xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="w-16 h-16 mx-auto mb-4 bg-blue-600 rounded-full flex items-center justify-center">
+                            <i data-feather="phone" class="text-white w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Phone</h3>
+                        <p class="text-gray-600 mb-4">Available for calls and discussions</p>
+                        <a href="tel:+1234567890" class="text-blue-600 hover:text-blue-800 font-medium text-lg">
+                            +1 (234) 567-890
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Connect With Me</h3>
+                    <div class="flex justify-center space-x-4 flex-wrap gap-4">
+                        <!-- GitHub -->
+                        <a href="https://github.com/oballe1" class="group bg-gray-900 hover:bg-black text-white w-14 h-14 rounded-full flex items-center justify-center transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" target="_blank" rel="noopener noreferrer">
+                            <i data-feather="github" class="w-6 h-6"></i>
+                            <span class="sr-only">GitHub</span>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/loveth-oballe-ayuknteck-%F0%9F%87%A8%F0%9F%87%B2-923b7a18a/" class="group bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 rounded-full flex items-center justify-center transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" target="_blank" rel="noopener noreferrer">
+                            <i data-feather="linkedin" class="w-6 h-6"></i>
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+            
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com/@lovethoballe" class="group bg-black hover:bg-gray-800 text-white w-14 h-14 rounded-full flex items-center justify-center transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" target="_blank" rel="noopener noreferrer">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
+                            <span class="sr-only">TikTok</span>
+                        </a>
+
+                        <!-- Instagram -->
+                        <a href="https://instagram.com/lovethoballe" class="group bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white w-14 h-14 rounded-full flex items-center justify-center transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1" target="_blank" rel="noopener noreferrer">
+                            <i data-feather="instagram" class="w-6 h-6"></i>
+                            <span class="sr-only">Instagram</span>
+                        </a>
+
+                    </div>
+
+                    <div class="mt-8 text-gray-600">
+                        <p class="text-lg">I'd love to connect and discuss opportunities, projects, or just chat about DevOps and technology!</p>
                     </div>
                 </div>
             </div>
@@ -517,15 +436,20 @@
                     <span class="text-xl font-bold text-blue-400">DevOpsEngineer</span>
                 </div>
                 <div class="mt-8 md:mt-0">
-                    <div class="flex justify-center md:justify-end space-x-6">
-                        <a href="https://github.com/lovethoballe" class="text-gray-400 hover:text-white" target="_blank">
+                    <div class="flex justify-center md:justify-end space-x-6 flex-wrap gap-y-2">
+                        <a href="https://github.com/oballe1" class="text-gray-400 hover:text-white" target="_blank">
                             <i data-feather="github"></i>
                         </a>
-                        <a href="https://linkedin.com/in/loveth-oballe-ayuknteck" class="text-gray-400 hover:text-white" target="_blank">
+                        <a href="https://www.linkedin.com/in/loveth-oballe-ayuknteck-%F0%9F%87%A8%F0%9F%87%B2-923b7a18a/" class="text-gray-400 hover:text-white" target="_blank">
                             <i data-feather="linkedin"></i>
                         </a>
-                        <a href="https://twitter.com/lovethoballe" class="text-gray-400 hover:text-white" target="_blank">
-                            <i data-feather="twitter"></i>
+                        <a href="https://www.instagram.com/loveth_a_y/?hl=en" class="text-gray-400 hover:text-white" target="_blank">
+                            <i data-feather="instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@lovethoballe" class="text-gray-400 hover:text-white" target="_blank">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -544,78 +468,45 @@
         </div>
     </footer>
 
+    <script src="/js/main.js"></script>
+
+    <!-- Fallback initialization -->
     <script>
+    window.addEventListener('load', function() {
         // Initialize animations
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
-        
-        // Initialize Vanta.js globe in hero section
-        if (document.getElementById('vanta-globe')) {
-            VANTA.GLOBE({
-                el: '#vanta-globe',
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                minHeight: 200.00,
-                minWidth: 200.00,
-                scale: 1.00,
-                scaleMobile: 1.00,
-                color: 0x3a86ff,
-                backgroundColor: 0x1e3c72
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
             });
         }
-        
+
+        // Initialize Vanta.js globe in hero section
+        if (typeof VANTA !== 'undefined' && document.getElementById('vanta-globe')) {
+            try {
+                VANTA.GLOBE({
+                    el: '#vanta-globe',
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x3a86ff,
+                    backgroundColor: 0x1e3c72
+                });
+            } catch (e) {
+                console.log('Vanta initialization failed:', e);
+            }
+        }
+
         // Initialize feather icons
-        feather.replace();
-
-        // Contact form handling
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById('submit-btn');
-            const submitText = document.getElementById('submit-text');
-            const submitLoading = document.getElementById('submit-loading');
-            const formMessage = document.getElementById('form-message');
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitText.classList.add('hidden');
-            submitLoading.classList.remove('hidden');
-
-            // Get form data
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                subject: formData.get('subject') || 'Contact from Portfolio',
-                message: formData.get('message')
-            };
-
-            // Simulate email sending (replace with actual service)
-            setTimeout(() => {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitText.classList.remove('hidden');
-                submitLoading.classList.add('hidden');
-
-                // Show success message
-                formMessage.classList.remove('hidden');
-                formMessage.className = 'p-4 rounded-md bg-green-100 border border-green-400 text-green-700';
-                formMessage.innerHTML = '<strong>Success!</strong> Your message has been sent. I\'ll get back to you soon!';
-
-                // Reset form
-                this.reset();
-
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    formMessage.classList.add('hidden');
-                }, 5000);
-
-            }, 2000); // Simulate network delay
-        });
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+    });
     </script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+dependencies:
+- name: ingress-nginx
+  repository: https://kubernetes.github.io/ingress-nginx
+  version: 4.8.3
+- name: cert-manager
+  repository: https://charts.jetstack.io
+  version: v1.13.2
+- name: kube-prometheus-stack
+  repository: https://prometheus-community.github.io/helm-charts
+  version: 54.2.2
+digest: sha256:cb58efdebdf83f0af3cfab364226ef12175fb5137e3896b0e9f3c3026b98ad2c
+generated: "2025-09-19T01:04:42.24471-04:00"

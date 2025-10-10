@@ -1,0 +1,38 @@
+services:
+  # Frontend Web Server
+  portfolio-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: devops-portfolio-web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Mount SSL certificates if you have them
+      - ./ssl:/etc/nginx/ssl:ro
+      # Mount nginx logs
+      - web_logs:/var/log/nginx
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    networks:
+      - portfolio-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  portfolio-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  web_logs:
+    driver: local
