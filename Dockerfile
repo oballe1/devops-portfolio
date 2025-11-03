@@ -1,5 +1,5 @@
 # Use official nginx image as base
-FROM nginx:1.25-alpine
+FROM nginx:1.29.3-alpine
 
 # Set maintainer
 LABEL maintainer="loveth.oballe@devopsengineer.com"
